@@ -2,6 +2,73 @@
 import { motion } from 'framer-motion';
 import { Users, Award, Calendar, Building } from 'lucide-react';
 
+const AboutHero = () => {
+  return (
+    <motion.section 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      className="relative h-[60vh] overflow-hidden"
+    >
+      {/* Background Image with Overlay */}
+      <div className="absolute inset-0">
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat transform scale-110 blur-[2px] brightness-50"
+          style={{
+            backgroundImage: `url('/about.jpg')`, 
+            backgroundPosition: 'center'
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-900/70 to-blue-700/70" />
+      </div>
+
+      <div className="relative max-w-7xl mx-auto px-4 h-full flex items-center">
+        <div className="text-white space-y-4 relative z-10">
+          <motion.h1 
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ 
+              delay: 0.2, 
+              type: "spring", 
+              stiffness: 100 
+            }}
+            className="text-4xl md:text-6xl font-bold mb-4 leading-tight"
+          >
+            About Alshari
+          </motion.h1>
+          <motion.p 
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ 
+              delay: 0.4, 
+              type: "spring", 
+              stiffness: 100 
+            }}
+            className="text-xl max-w-2xl opacity-90"
+          >
+            Leading the way in premium car rental services since 2008
+          </motion.p>
+        </div>
+      </div>
+
+      {/* Subtle Animated Elements */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ 
+          opacity: [0.6, 0.4, 0.6], 
+          scale: [0.9, 1.05, 0.95] 
+        }}
+        transition={{ 
+          duration: 5, 
+          repeat: Infinity, 
+          repeatType: "loop" 
+        }}
+        className="absolute bottom-10 right-10 w-20 h-20 bg-white/10 rounded-full blur-2xl"
+      />
+    </motion.section>
+  );
+};
+
+
 const About = () => {
   const stats = [
     { icon: <Users className="w-6 h-6" />, value: '10,000+', label: 'Happy Customers' },
@@ -31,33 +98,7 @@ const About = () => {
   return (
     <div className="pt-16">
       {/* Hero Section */}
-      <motion.section 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        className="relative h-[60vh] bg-gradient-to-r from-blue-900 to-blue-700"
-      >
-        <div className="absolute inset-0 bg-black/50" />
-        <div className="relative max-w-7xl mx-auto px-4 h-full flex items-center">
-          <div className="text-white">
-            <motion.h1 
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.2 }}
-              className="text-4xl md:text-6xl font-bold mb-4"
-            >
-              About Alshari
-            </motion.h1>
-            <motion.p 
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.4 }}
-              className="text-xl max-w-2xl"
-            >
-              Leading the way in premium car rental services since 2008
-            </motion.p>
-          </div>
-        </div>
-      </motion.section>
+      <AboutHero />
 
       {/* Stats Section */}
       <section className="py-20 bg-white">

@@ -19,116 +19,127 @@ const Fleet = () => {
     { id: "sports", name: "Sports" },
   ];
 
-
   const cars = [
     {
       id: 1,
-      name: 'Tesla Model 3',
-      category: 'electric',
+      name: "Tesla Model 3",
+      category: "electric",
       price: 150,
       seats: 5,
-      transmission: 'Automatic',
-      features: ['Autopilot', 'Premium Sound', 'Long Range'],
+      transmission: "Automatic",
+      features: ["Autopilot", "Premium Sound", "Long Range"],
+      imageUrl: "t3.jpg",
     },
     {
       id: 2,
-      name: 'BMW 7 Series',
-      category: 'luxury',
+      name: "Honda Fit Hybrid",
+      category: "Regular",
       price: 300,
       seats: 5,
-      transmission: 'Automatic',
-      features: ['Leather Interior', 'Panoramic Roof', 'Massage Seats'],
+      transmission: "Automatic",
+      features: ["Leather Interior", "Panoramic Roof", "Massage Seats"],
+      imageUrl: "hondafit.JPG",
     },
     {
       id: 3,
-      name: 'Toyota RAV4',
-      category: 'suv',
+      name: "Toyota RAV4",
+      category: "suv",
       price: 120,
       seats: 5,
-      transmission: 'Automatic',
-      features: ['All-Wheel Drive', 'Apple CarPlay', 'Lane Assist'],
+      transmission: "Automatic",
+      features: ["All-Wheel Drive", "Apple CarPlay", "Lane Assist"],
+      imageUrl: "rav4.webp",
     },
     {
       id: 4,
-      name: 'Porsche 911',
-      category: 'sports',
+      name: "Porsche 911",
+      category: "sports",
       price: 450,
       seats: 2,
-      transmission: 'Manual',
-      features: ['Sport Mode', 'Carbon Fiber', 'Launch Control'],
+      transmission: "Manual",
+      features: ["Sport Mode", "Carbon Fiber", "Launch Control"],
+      imageUrl: "porche911.png",
     },
     {
       id: 5,
-      name: 'Mercedes EQS',
-      category: 'electric',
+      name: "Toyota Hilux",
+      category: "regular",
       price: 400,
       seats: 5,
-      transmission: 'Automatic',
-      features: ['Hyperscreen', 'Air Suspension', 'Level 3 Autonomy'],
+      transmission: "Automatic",
+      features: ["Hyperscreen", "Air Suspension", "Level 3 Autonomy"],
+      imageUrl: "Hilux.webp",
     },
     {
       id: 6,
-      name: 'Range Rover Sport',
-      category: 'suv',
+      name: "Range Rover Sport",
+      category: "suv",
       price: 350,
       seats: 7,
-      transmission: 'Automatic',
-      features: ['Off-Road Mode', 'Premium Audio', 'Air Suspension'],
+      transmission: "Automatic",
+      features: ["Off-Road Mode", "Premium Audio", "Air Suspension"],
+      imageUrl: "range.webp",
     },
     {
       id: 7,
-      name: 'Audi RS e-tron GT',
-      category: 'electric',
+      name: "Toyota Corolla",
+      category: "regular",
       price: 380,
       seats: 4,
-      transmission: 'Automatic',
-      features: ['Quattro Drive', 'Fast Charging', 'Virtual Cockpit'],
+      transmission: "Automatic",
+      features: ["Quattro Drive", "Fast Charging", "Virtual Cockpit"],
+      imageUrl: "corrola.png",
     },
     {
       id: 8,
-      name: 'Ferrari F8',
-      category: 'sports',
+      name: "Ford Raptor",
+      category: "sports",
       price: 500,
       seats: 2,
-      transmission: 'Automatic',
-      features: ['Race Mode', 'Carbon Ceramics', 'Active Aero'],
+      transmission: "Automatic",
+      features: ["Race Mode", "Carbon Ceramics", "Active Aero"],
+      imageUrl: "raptor.jpg",
     },
     {
       id: 9,
-      name: 'Rolls-Royce Ghost',
-      category: 'luxury',
+      name: "Rolls-Royce Ghost",
+      category: "luxury",
       price: 490,
       seats: 5,
-      transmission: 'Automatic',
-      features: ['Starlight Headliner', 'Champagne Cooler', 'Bespoke Audio'],
+      transmission: "Automatic",
+      features: ["Starlight Headliner", "Champagne Cooler", "Bespoke Audio"],
+      imageUrl: "rolce.avif",
     },
     {
       id: 10,
-      name: 'McLaren 720S',
-      category: 'sports',
+      name: "McLaren 720S",
+      category: "sports",
       price: 475,
       seats: 2,
-      transmission: 'Automatic',
-      features: ['Track Mode', 'Dihedral Doors', 'Active Dynamics'],
+      transmission: "Automatic",
+      features: ["Track Mode", "Dihedral Doors", "Active Dynamics"],
+      imageUrl: "mclaren.jpg",
     },
     {
       id: 11,
-      name: 'Bentley Continental GT',
-      category: 'luxury',
+      name: "Bentley Continental GT",
+      category: "luxury",
       price: 460,
       seats: 4,
-      transmission: 'Automatic',
-      features: ['Diamond Quilting', 'Rotating Display', 'Air Suspension'],
+      transmission: "Automatic",
+      features: ["Diamond Quilting", "Rotating Display", "Air Suspension"],
+      imageUrl: "bentley.webp",
     },
     {
       id: 12,
-      name: 'Rivian R1S',
-      category: 'electric',
+      name: "Honda Vezel",
+      category: "sports",
       price: 280,
       seats: 7,
-      transmission: 'Automatic',
-      features: ['Adventure Mode', 'Tank Turn', 'Camp Kitchen'],
-    }
+      transmission: "Automatic",
+      features: ["Adventure Mode", "Tank Turn", "Camp Kitchen"],
+      imageUrl: "vezel.jpg",
+    },
   ];
 
   const filteredCars = cars.filter((car) => {
@@ -147,8 +158,8 @@ const Fleet = () => {
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex flex-col md:flex-row gap-8">
           {/* Filters Sidebar */}
-          <div className="w-full md:w-64 space-y-6">
-            <div className="bg-white p-6 rounded-xl shadow-sm">
+          <div className="w-full md:w-64 space-y-6 ">
+            <div className="bg-white p-6 rounded-xl shadow-sm bg-blue-100">
               <h3 className="text-lg font-semibold mb-4">Filters</h3>
 
               {/* Search */}
@@ -214,7 +225,13 @@ const Fleet = () => {
                     exit={{ opacity: 0 }}
                     className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow"
                   >
-                    <div className="aspect-video bg-gray-200" />
+                    <div className="aspect-video">
+                      <img
+                        src={car.imageUrl}
+                        alt={car.name}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
                     <div className="p-6">
                       <h3 className="text-xl font-semibold mb-2">{car.name}</h3>
                       <div className="flex justify-between items-center mb-4">

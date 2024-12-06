@@ -1,8 +1,102 @@
 // src/pages/Contact.jsx
 import { motion } from 'framer-motion';
 import { Phone, Mail, MapPin, Clock } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import L from 'leaflet';
+import 'leaflet/dist/leaflet.css';
+import icon from 'leaflet/dist/images/marker-icon.png';
+import iconShadow from 'leaflet/dist/images/marker-shadow.png';
+
+let DefaultIcon = L.icon({
+  iconUrl: icon,
+  shadowUrl: iconShadow,
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41]
+});
+
+L.Marker.prototype.options.icon = DefaultIcon;
+
+const ContactHero = () => {
+  return (
+    <motion.section 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      className="relative h-[60vh] overflow-hidden"
+    >
+      {/* Background Image with Overlay */}
+      <div className="absolute inset-0">
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat transform scale-110 blur-[2px] brightness-50"
+          style={{
+            backgroundImage: `url('/contact.jpg')`, 
+            backgroundPosition: 'center'
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-900/70 to-blue-700/70" />
+      </div>
+
+      <div className="relative max-w-7xl mx-auto px-4 h-full flex items-center">
+        <div className="text-white space-y-4 relative z-10">
+          <motion.h1 
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ 
+              delay: 0.2, 
+              type: "spring", 
+              stiffness: 100 
+            }}
+            className="text-4xl md:text-6xl font-bold mb-4 leading-tight"
+          >
+            Contact Us
+          </motion.h1>
+          <motion.p 
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ 
+              delay: 0.4, 
+              type: "spring", 
+              stiffness: 100 
+            }}
+            className="text-xl max-w-2xl opacity-90"
+          >
+            Get in touch with our team for any inquiries or support
+          </motion.p>
+        </div>
+      </div>
+
+      {/* Subtle Animated Elements */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ 
+          opacity: [0.6, 0.4, 0.6], 
+          scale: [0.9, 1.05, 0.95] 
+        }}
+        transition={{ 
+          duration: 5, 
+          repeat: Infinity, 
+          repeatType: "loop" 
+        }}
+        className="absolute bottom-10 right-10 w-20 h-20 bg-white/10 rounded-full blur-2xl"
+      />
+    </motion.section>
+  );
+};
+
+
+
+
+// Custom marker icon
+
 
 const Contact = () => {
+  const [mapLoaded, setMapLoaded] = useState(false);
+
+  // Coordinates for the company location
+  const companyLocation = [-17.8062465,31.1487578,15]; // New York coordinates
+
   const contactInfo = [
     {
       icon: <Phone className="w-6 h-6" />,
@@ -30,36 +124,22 @@ const Contact = () => {
     }
   ];
 
+  useEffect(() => {
+    // Dynamically load Leaflet CSS to avoid SSR issues
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = 'https://unpkg.com/leaflet@1.7.1/dist/leaflet.css';
+    document.head.appendChild(link);
+
+    return () => {
+      document.head.removeChild(link);
+    };
+  }, []);
+
   return (
     <div className="pt-16">
       {/* Hero Section */}
-      <motion.section 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        className="relative h-[60vh] bg-gradient-to-r from-blue-900 to-blue-700"
-      >
-        <div className="absolute inset-0 bg-black/50" />
-        <div className="relative max-w-7xl mx-auto px-4 h-full flex items-center">
-          <div className="text-white">
-            <motion.h1 
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.2 }}
-              className="text-4xl md:text-6xl font-bold mb-4"
-            >
-              Contact Us
-            </motion.h1>
-            <motion.p 
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.4 }}
-              className="text-xl max-w-2xl"
-            >
-              Get in touch with our team for any inquiries or support
-            </motion.p>
-          </div>
-        </div>
-      </motion.section>
+      <ContactHero />
 
       {/* Contact Information */}
       <section className="py-20 bg-white">
@@ -82,6 +162,56 @@ const Contact = () => {
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Interactive Map Section */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4">
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="text-3xl font-bold text-center mb-12"
+          >
+            Find Us on the Map
+          </motion.h2>
+          
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
+            className="w-full h-96 rounded-xl overflow-hidden shadow-lg"
+          >
+            <MapContainer
+              center={companyLocation}
+              zoom={13}
+              scrollWheelZoom={false}
+              className="h-full w-full z-10"
+              style={{ 
+                zIndex: 10,
+                borderRadius: '0.75rem' 
+              }}
+            >
+              <TileLayer
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                className="filter brightness-90 contrast-125"
+              />
+              <Marker 
+                position={companyLocation} 
+                icon={DefaultIcon}
+              >
+                <Popup>
+                  <div className="text-center">
+                    <strong>Alshari Car Rentals</strong>
+                    <p>123 Business Avenue</p>
+                    <p>New York, NY 10001</p>
+                  </div>
+                </Popup>
+              </Marker>
+            </MapContainer>
+          </motion.div>
         </div>
       </section>
 
