@@ -101,20 +101,20 @@ const Contact = () => {
     {
       icon: <Phone className="w-6 h-6" />,
       title: 'Phone',
-      details: '+1 (555) 123-4567',
+      details: '+263 77 392 4222',
       subdetails: 'Mon-Fri from 8am to 8pm'
     },
     {
       icon: <Mail className="w-6 h-6" />,
       title: 'Email',
-      details: 'contact@alshari.com',
+      details: 'contact@alshari.co.zw',
       subdetails: 'Online support 24/7'
     },
     {
       icon: <MapPin className="w-6 h-6" />,
-      title: 'Address',
-      details: '123 Business Avenue',
-      subdetails: 'New York, NY 10001'
+      title: '22',
+      details: 'Kurrichane Way',
+      subdetails: 'Harare'
     },
     {
       icon: <Clock className="w-6 h-6" />,

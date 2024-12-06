@@ -90,15 +90,15 @@ const Footer = () => {
             <ul className="space-y-4">
               <li className="flex items-center space-x-3 text-gray-400">
                 <MapPin className="text-blue-500" size={20} />
-                <span>123 Rental Street, City, State 12345</span>
+                <span>22 Kurrichane Way, Harare</span>
               </li>
               <li className="flex items-center space-x-3 text-gray-400">
                 <Phone className="text-green-500" size={20} />
-                <span>(123) 456-7890</span>
+                <span>+263 77 392 4222</span>
               </li>
               <li className="flex items-center space-x-3 text-gray-400">
                 <Mail className="text-red-500" size={20} />
-                <span>info@carrental.com</span>
+                <span>info@alshari.co.zw</span>
               </li>
             </ul>
           </div>
