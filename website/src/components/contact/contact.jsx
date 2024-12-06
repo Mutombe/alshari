@@ -1,12 +1,12 @@
 // src/pages/Contact.jsx
-import { motion } from 'framer-motion';
-import { Phone, Mail, MapPin, Clock } from 'lucide-react';
-import React, { useEffect, useState } from 'react';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import L from 'leaflet';
-import 'leaflet/dist/leaflet.css';
-import icon from 'leaflet/dist/images/marker-icon.png';
-import iconShadow from 'leaflet/dist/images/marker-shadow.png';
+import { motion } from "framer-motion";
+import { Phone, Mail, MapPin, Clock } from "lucide-react";
+import React, { useEffect, useState } from "react";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import L from "leaflet";
+import "leaflet/dist/leaflet.css";
+import icon from "leaflet/dist/images/marker-icon.png";
+import iconShadow from "leaflet/dist/images/marker-shadow.png";
 
 let DefaultIcon = L.icon({
   iconUrl: icon,
@@ -14,25 +14,25 @@ let DefaultIcon = L.icon({
   iconSize: [25, 41],
   iconAnchor: [12, 41],
   popupAnchor: [1, -34],
-  shadowSize: [41, 41]
+  shadowSize: [41, 41],
 });
 
 L.Marker.prototype.options.icon = DefaultIcon;
 
 const ContactHero = () => {
   return (
-    <motion.section 
+    <motion.section
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       className="relative h-[60vh] overflow-hidden"
     >
       {/* Background Image with Overlay */}
       <div className="absolute inset-0">
-        <div 
+        <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat transform scale-110 blur-[2px] brightness-50"
           style={{
-            backgroundImage: `url('/contact.jpg')`, 
-            backgroundPosition: 'center'
+            backgroundImage: `url('/contact.jpg')`,
+            backgroundPosition: "center",
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-r from-blue-900/70 to-blue-700/70" />
@@ -40,25 +40,25 @@ const ContactHero = () => {
 
       <div className="relative max-w-7xl mx-auto px-4 h-full flex items-center">
         <div className="text-white space-y-4 relative z-10">
-          <motion.h1 
+          <motion.h1
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            transition={{ 
-              delay: 0.2, 
-              type: "spring", 
-              stiffness: 100 
+            transition={{
+              delay: 0.2,
+              type: "spring",
+              stiffness: 100,
             }}
             className="text-4xl md:text-6xl font-bold mb-4 leading-tight"
           >
             Contact Us
           </motion.h1>
-          <motion.p 
+          <motion.p
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            transition={{ 
-              delay: 0.4, 
-              type: "spring", 
-              stiffness: 100 
+            transition={{
+              delay: 0.4,
+              type: "spring",
+              stiffness: 100,
             }}
             className="text-xl max-w-2xl opacity-90"
           >
@@ -70,14 +70,14 @@ const ContactHero = () => {
       {/* Subtle Animated Elements */}
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ 
-          opacity: [0.6, 0.4, 0.6], 
-          scale: [0.9, 1.05, 0.95] 
+        animate={{
+          opacity: [0.6, 0.4, 0.6],
+          scale: [0.9, 1.05, 0.95],
         }}
-        transition={{ 
-          duration: 5, 
-          repeat: Infinity, 
-          repeatType: "loop" 
+        transition={{
+          duration: 5,
+          repeat: Infinity,
+          repeatType: "loop",
         }}
         className="absolute bottom-10 right-10 w-20 h-20 bg-white/10 rounded-full blur-2xl"
       />
@@ -85,50 +85,46 @@ const ContactHero = () => {
   );
 };
 
-
-
-
 // Custom marker icon
-
 
 const Contact = () => {
   const [mapLoaded, setMapLoaded] = useState(false);
 
   // Coordinates for the company location
-  const companyLocation = [-17.8062465,31.1487578,15]; // New York coordinates
+  const companyLocation = [-17.8062465, 31.1487578, 15]; // New York coordinates
 
   const contactInfo = [
     {
       icon: <Phone className="w-6 h-6" />,
-      title: 'Phone',
-      details: '+263 77 392 4222',
-      subdetails: 'Mon-Fri from 8am to 8pm'
+      title: "Phone",
+      details: "+263 77 392 4222",
+      subdetails: "Mon-Fri from 8am to 8pm",
     },
     {
       icon: <Mail className="w-6 h-6" />,
-      title: 'Email',
-      details: 'contact@alshari.co.zw',
-      subdetails: 'Online support 24/7'
+      title: "Email",
+      details: "contact@alshari.co.zw",
+      subdetails: "Online support 24/7",
     },
     {
       icon: <MapPin className="w-6 h-6" />,
-      title: '22',
-      details: 'Kurrichane Way',
-      subdetails: 'Harare'
+      title: "22",
+      details: "Kurrichane Way",
+      subdetails: "Harare",
     },
     {
       icon: <Clock className="w-6 h-6" />,
-      title: 'Working Hours',
-      details: 'Mon - Sat: 8am - 8pm',
-      subdetails: 'Sunday: 10am - 6pm'
-    }
+      title: "Working Hours",
+      details: "Mon - Sat: 8am - 8pm",
+      subdetails: "Sunday: 10am - 6pm",
+    },
   ];
 
   useEffect(() => {
     // Dynamically load Leaflet CSS to avoid SSR issues
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = 'https://unpkg.com/leaflet@1.7.1/dist/leaflet.css';
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = "https://unpkg.com/leaflet@1.7.1/dist/leaflet.css";
     document.head.appendChild(link);
 
     return () => {
@@ -168,7 +164,7 @@ const Contact = () => {
       {/* Interactive Map Section */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4">
-          <motion.h2 
+          <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -176,7 +172,7 @@ const Contact = () => {
           >
             Find Us on the Map
           </motion.h2>
-          
+
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -188,9 +184,9 @@ const Contact = () => {
               zoom={13}
               scrollWheelZoom={false}
               className="h-full w-full z-10"
-              style={{ 
+              style={{
                 zIndex: 10,
-                borderRadius: '0.75rem' 
+                borderRadius: "0.75rem",
               }}
             >
               <TileLayer
@@ -198,15 +194,12 @@ const Contact = () => {
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 className="filter brightness-90 contrast-125"
               />
-              <Marker 
-                position={companyLocation} 
-                icon={DefaultIcon}
-              >
+              <Marker position={companyLocation} icon={DefaultIcon}>
                 <Popup>
                   <div className="text-center">
                     <strong>Alshari Car Rentals</strong>
-                    <p>123 Business Avenue</p>
-                    <p>New York, NY 10001</p>
+                    <p>22 Kurrichane Way</p>
+                    <p>Harare</p>
                   </div>
                 </Popup>
               </Marker>
@@ -219,7 +212,9 @@ const Contact = () => {
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4">
           <div className="max-w-3xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-12">Send Us a Message</h2>
+            <h2 className="text-3xl font-bold text-center mb-12">
+              Send Us a Message
+            </h2>
             <form className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>

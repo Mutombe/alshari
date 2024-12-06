@@ -100,7 +100,6 @@ const About = () => {
 
   return (
     <div className="pt-16">
-      {/* Hero Section */}
       <AboutHero />
 
       {/* Stats Section */}
