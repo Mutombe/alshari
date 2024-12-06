@@ -79,19 +79,22 @@ const About = () => {
 
   const teamMembers = [
     {
-      name: 'John Smith',
+      name: 'Alshari',
       position: 'CEO & Founder',
       description: 'Leading our vision of premium car rental services.',
+      imageUrl: '/user2.png.crdownload',
     },
     {
-      name: 'Sarah Johnson',
+      name: 'Sarah',
       position: 'Operations Director',
       description: 'Ensuring smooth operations across all locations.',
+      imageUrl: '/user2.png.crdownload',
     },
     {
-      name: 'Michael Chen',
+      name: 'Michael',
       position: 'Fleet Manager',
       description: 'Maintaining our premium vehicle collection.',
+      imageUrl: '/user2.png.crdownload',
     },
   ];
 
@@ -156,7 +159,13 @@ const About = () => {
                 transition={{ delay: index * 0.2 }}
                 className="text-center"
               >
-                <div className="w-32 h-32 mx-auto bg-gray-200 rounded-full mb-4" />
+                <div className="w-32 h-32 mx-auto bg-gray-200 rounded-full mb-4">
+                      <img
+                        src={member.imageUrl}
+                        alt={member.name}
+                        className="w-full h-full object-cover"
+                      />
+                </div>
                 <h3 className="text-xl font-semibold mb-2">{member.name}</h3>
                 <p className="text-blue-600 mb-2">{member.position}</p>
                 <p className="text-gray-600">{member.description}</p>
